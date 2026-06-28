@@ -18,8 +18,15 @@ export default function Home() {
         <Testimonials />
         <Contact />
       </main>
-      <footer className="bg-[#0B2447] border-t border-white/10 py-6 text-center text-[#A5D7E8]/50 text-sm font-sans">
-        &copy; {new Date().getFullYear()} Facilymp. Todos os direitos reservados.
+      <footer className="bg-[#FBFBFA] border-t border-[#0B2447]/8 py-10">
+        <div className="max-w-6xl mx-auto px-6 flex flex-col sm:flex-row items-center justify-between gap-3">
+          <span className="font-serif text-xl text-[#0B2447]">
+            Facil<span className="italic text-[#19A7CE]">ymp</span>
+          </span>
+          <span className="text-[#14233B]/50 text-sm">
+            &copy; {new Date().getFullYear()} Facilymp. Chamou? Limpou.
+          </span>
+        </div>
       </footer>
     </>
   );

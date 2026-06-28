@@ -2,86 +2,100 @@
 
 import { useRef } from "react";
 import { motion, useInView } from "motion/react";
-import { Star } from "@phosphor-icons/react";
+
+const ease = [0.16, 1, 0.3, 1] as const;
 
 const testimonials = [
   {
     name: "Ana Lima",
-    text: "Servico impecavel! Minha casa ficou brilhando. Vou indicar para todos os amigos.",
     role: "Cliente residencial",
+    text: "Servico impecavel. Minha casa ficou brilhando e a equipe foi super cuidadosa.",
   },
   {
     name: "Carlos Mendes",
-    text: "Profissionais pontuais e muito dedicados. O escritorio ficou limpissimo e cheio de vida.",
     role: "Empresa comercial",
+    text: "Profissionais pontuais e dedicados. O escritorio nunca esteve tao apresentavel.",
   },
   {
     name: "Pastor Roberto",
-    text: "Cuidaram da nossa igreja com muito respeito e capricho. Excelente trabalho!",
-    role: "Igreja cliente",
+    role: "Igreja",
+    text: "Cuidaram do nosso templo com respeito e capricho. Trabalho excelente.",
   },
   {
     name: "Marcia Santos",
-    text: "Atendimento rapido e resultado perfeito. Contratei o plano semanal e nao me arrependo.",
     role: "Cliente residencial",
+    text: "Atendimento rapido e resultado perfeito. Contratei o plano semanal e adorei.",
   },
   {
     name: "Felipe Torres",
-    text: "Equipamentos modernos e equipe muito treinada. Recomendo sem hesitar para qualquer empresa.",
     role: "Empresa comercial",
+    text: "Equipamentos modernos e equipe muito treinada. Recomendo para qualquer empresa.",
   },
   {
     name: "Silvia Nunes",
-    text: "Qualidade e profissionalismo desde o primeiro contato. Top demais!",
     role: "Cliente residencial",
+    text: "Qualidade e profissionalismo desde o primeiro contato.",
   },
 ];
+
+function initials(name: string) {
+  return name
+    .split(" ")
+    .map((n) => n[0])
+    .slice(0, 2)
+    .join("");
+}
 
 export default function Testimonials() {
   const ref = useRef(null);
   const inView = useInView(ref, { once: true, margin: "-80px" });
 
   return (
-    <section ref={ref} className="bg-white py-24">
+    <section id="depoimentos" ref={ref} className="bg-[#FBFBFA] py-24 lg:py-32">
       <div className="max-w-6xl mx-auto px-6">
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
+          initial={{ opacity: 0, y: 24 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6 }}
-          className="mb-12"
+          transition={{ duration: 0.7, ease }}
+          className="max-w-2xl mb-14"
         >
-          <p className="text-[#19A7CE] font-semibold text-sm uppercase tracking-widest mb-3">
+          <span className="text-[#19A7CE] text-xs font-semibold uppercase tracking-[0.18em]">
             Depoimentos
-          </p>
-          <h2 className="text-4xl font-extrabold text-[#0B2447]">
-            O que nossos
+          </span>
+          <h2 className="font-serif text-4xl lg:text-5xl text-[#0B2447] tracking-[-0.02em] mt-4 leading-[1.05]">
+            Quem confia,
             <br />
-            clientes dizem
+            recomenda
           </h2>
         </motion.div>
 
-        <div className="columns-1 sm:columns-2 lg:columns-3 gap-4">
+        <div className="columns-1 sm:columns-2 lg:columns-3 gap-5">
           {testimonials.map((t, i) => (
-            <motion.div
+            <motion.figure
               key={t.name}
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 0, y: 18 }}
               animate={inView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.5, delay: i * 0.08 }}
-              className="break-inside-avoid mb-4 bg-[#F0F7FF] rounded-2xl p-6"
+              transition={{ duration: 0.6, delay: i * 0.08, ease }}
+              className="break-inside-avoid mb-5 rounded-2xl border border-[#0B2447]/10 bg-white p-6"
             >
-              <div className="flex gap-0.5 mb-3">
-                {Array.from({ length: 5 }).map((_, j) => (
-                  <Star key={j} size={16} weight="fill" className="text-[#19A7CE]" />
-                ))}
-              </div>
-              <p className="text-[#0B2447] text-sm leading-relaxed mb-4">
-                &ldquo;{t.text}&rdquo;
-              </p>
-              <div>
-                <p className="font-semibold text-[#0B2447] text-sm">{t.name}</p>
-                <p className="text-[#0B2447]/50 text-xs">{t.role}</p>
-              </div>
-            </motion.div>
+              <span className="font-serif text-4xl text-[#19A7CE] leading-none">
+                &ldquo;
+              </span>
+              <blockquote className="text-[#14233B]/80 leading-relaxed mt-1 mb-5">
+                {t.text}
+              </blockquote>
+              <figcaption className="flex items-center gap-3">
+                <span className="grid place-items-center w-10 h-10 rounded-full bg-[#0B2447] text-white text-xs font-semibold">
+                  {initials(t.name)}
+                </span>
+                <span>
+                  <span className="block text-sm font-semibold text-[#0B2447]">
+                    {t.name}
+                  </span>
+                  <span className="block text-xs text-[#14233B]/50">{t.role}</span>
+                </span>
+              </figcaption>
+            </motion.figure>
           ))}
         </div>
       </div>

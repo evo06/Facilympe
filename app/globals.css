@@ -4,8 +4,12 @@
   --color-primary: #0B2447;
   --color-accent: #19A7CE;
   --color-accent-light: #A5D7E8;
-  --color-surface: #F0F7FF;
+  --color-canvas: #FBFBFA;
+  --color-ink: #14233B;
+  --color-hairline: rgba(11, 36, 71, 0.08);
   --font-sans: var(--font-jakarta);
+  --font-serif: var(--font-fraunces);
+  --ease-soft: cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 html {
@@ -13,7 +17,24 @@ html {
 }
 
 body {
-  background: #ffffff;
-  color: #0B2447;
+  background: #FBFBFA;
+  color: #14233B;
   -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+::selection {
+  background: #19A7CE;
+  color: #ffffff;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
 }
