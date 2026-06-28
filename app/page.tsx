@@ -1,5 +1,7 @@
 import Nav from "@/components/Nav";
+import ScrollProgress from "@/components/ScrollProgress";
 import Hero from "@/components/Hero";
+import Marquee from "@/components/Marquee";
 import Stats from "@/components/Stats";
 import Services from "@/components/Services";
 import Pricing from "@/components/Pricing";
@@ -9,9 +11,11 @@ import Contact from "@/components/Contact";
 export default function Home() {
   return (
     <>
+      <ScrollProgress />
       <Nav />
       <main>
         <Hero />
+        <Marquee />
         <Stats />
         <Services />
         <Pricing />

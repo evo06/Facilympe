@@ -1,12 +1,15 @@
 "use client";
 
 import Image from "next/image";
-import { motion } from "motion/react";
+import { motion, useReducedMotion } from "motion/react";
 import { WhatsappLogo, ArrowUpRight } from "@phosphor-icons/react";
+import MagneticButton from "./MagneticButton";
 
 const ease = [0.16, 1, 0.3, 1] as const;
 
 export default function Hero() {
+  const reduced = useReducedMotion();
+
   return (
     <section className="relative bg-[#FBFBFA] pt-28 pb-20 lg:pt-36 lg:pb-28">
       <div className="max-w-6xl mx-auto px-6 grid lg:grid-cols-[1.05fr_0.95fr] gap-14 lg:gap-10 items-center">
@@ -50,7 +53,7 @@ export default function Hero() {
             transition={{ duration: 0.7, delay: 0.25, ease }}
             className="flex flex-wrap items-center gap-4"
           >
-            <a
+            <MagneticButton
               href="https://wa.me/5521999937262"
               target="_blank"
               rel="noopener noreferrer"
@@ -60,7 +63,7 @@ export default function Hero() {
               <span className="grid place-items-center w-9 h-9 rounded-full bg-white/15 transition-transform group-hover:rotate-12">
                 <WhatsappLogo size={18} weight="fill" />
               </span>
-            </a>
+            </MagneticButton>
             <a
               href="#servicos"
               className="inline-flex items-center gap-1.5 text-[#0B2447] font-semibold hover:text-[#19A7CE] transition-colors"
@@ -92,10 +95,14 @@ export default function Hero() {
           </div>
 
           {/* Cartao flutuante discreto */}
-          <div className="absolute -bottom-5 -left-5 bg-white rounded-2xl border border-[#0B2447]/8 shadow-[0_12px_30px_-12px_rgba(11,36,71,0.3)] px-5 py-4">
+          <motion.div
+            animate={reduced ? undefined : { y: [0, -10, 0] }}
+            transition={{ duration: 4.5, repeat: Infinity, ease: "easeInOut" }}
+            className="absolute -bottom-5 -left-5 bg-white rounded-2xl border border-[#0B2447]/8 shadow-[0_12px_30px_-12px_rgba(11,36,71,0.3)] px-5 py-4"
+          >
             <p className="font-serif text-2xl text-[#0B2447] leading-none">1.000+</p>
             <p className="text-[#14233B]/60 text-xs mt-1">clientes satisfeitos</p>
-          </div>
+          </motion.div>
         </motion.div>
       </div>
     </section>

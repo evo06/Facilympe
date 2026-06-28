@@ -8,6 +8,7 @@ import {
   InstagramLogo,
   ArrowUpRight,
 } from "@phosphor-icons/react";
+import MagneticButton from "./MagneticButton";
 
 const ease = [0.16, 1, 0.3, 1] as const;
 
@@ -39,7 +40,7 @@ export default function Contact() {
               rapido e cuida do resto.
             </p>
 
-            <a
+            <MagneticButton
               href="https://wa.me/5521999937262"
               target="_blank"
               rel="noopener noreferrer"
@@ -49,7 +50,7 @@ export default function Contact() {
               <span className="grid place-items-center w-10 h-10 rounded-full bg-white/20 transition-transform group-hover:rotate-12">
                 <WhatsappLogo size={20} weight="fill" />
               </span>
-            </a>
+            </MagneticButton>
 
             <div className="flex flex-col sm:flex-row gap-6 sm:gap-10 mt-12 pt-10 border-t border-white/10">
               <a
